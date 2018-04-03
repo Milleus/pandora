@@ -1,0 +1,8 @@
+.display-flex { display: flex; }
+.align-items-center { align-items: center; }
+.justify-content-space-between { justify-content: space-between; }
+.break-word { word-break: break-word; }
+.item-left { max-width: 70%; }
+.SLOW { color: red; }
+.AVERAGE { color: orange; }
+.FAST { color: green; }
