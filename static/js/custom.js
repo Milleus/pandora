@@ -101,8 +101,6 @@ var impactArr = [];
 var idx = 0;
 var siteCount = 0;
 
-// Invokes the PageSpeed Insights API. The response will contain
-// JavaScript that invokes our callback with the PageSpeed results.
 function runPagespeed() {
   generateScript();
 }
@@ -123,7 +121,9 @@ function generateScript() {
 
     console.log('Request:', DOMAIN_LIST[idx], ', Timestamp:', new Date());
     idx++;
+    // 60 requests per 100 seconds per user, throttle requests when necessary
     setTimeout(generateScript, 2000);
+    // generateScript();
   }
 }
 
@@ -148,9 +148,6 @@ function runPagespeedCallbacks(result) {
   }
 }
 
-// Invoke the callback that fetches results. Async here so we're sure
-// to discover any callbacks registered below, but this can be
-// synchronous in your code.
 setTimeout(runPagespeed, 0);
 
 callbacks.displayLoadingExperience = function (result) {
@@ -352,7 +349,6 @@ window.addEventListener('load', function () {
   queryStatus.innerHTML = `Queries have ended. ${siteCount} of ${DOMAIN_LIST.length} successfully added.`;
 });
 
-// Helper function that sorts results in order of impact.
 function sortByImpact(a, b) {
   return b.impact - a.impact;
 }
